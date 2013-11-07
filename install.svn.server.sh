@@ -17,6 +17,7 @@
 #chown -R www-data:www-data ${SVN_REPOS}			
 #chmod -R 770 ${SVN_REPOS}			
 
+# --fs-type=fsfs 
 #svnadmin create --fs-type fsfs ${SVN_REPOS}/MyRepo
 #chown -R www-data:www-data ${SVN_REPOS}/MyRepo
 #chmod -R 770 ${SVN_REPOS}/MyRepo

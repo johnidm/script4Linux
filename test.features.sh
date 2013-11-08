@@ -1,8 +1,41 @@
-#!/bin/bash
+#!/bin/bash  
+
+
+
+
+EXPORT=/usr/bin/data/arquivo.tar.gz.2
+
+file=$(basename $EXPORT)
+
+echo "Arquivo \"$file\""
+
+
+
+
+<<END
 
 FALSE=0
 TRUE=1
-: '
+
+# escrever em um arquivo, dessa forma sobescreve o aquivo
+if [ "$(uname -m)" == "x86_64" ]; then
+  echo "64 bit"	
+else
+  echo "32 bit"
+fi
+
+cat <<EOF > teste.txt
+--------------------
+#!/bin/bash
+export TESTE=1
+--------------------
+EOF
+ 
+
+# http://www.devin.com.br/mail-via-linha-de-comando/
+# http://linuxdicas.wikispaces.com/shell-script
+
+
 exists_directory() {
 
 	# para testar arquivos basta trocar o "d" pelo "f"	
@@ -20,7 +53,7 @@ if ! exists_directory "/usr/lib/" ; then
 else
 	echo "Diretorio NAO existe"
 fi
-' 
+ 
 
 check_program_installed() {
 		
@@ -42,5 +75,7 @@ if ! check_program_installed "$COMMAND" ; then
 else
 	echo "Programa NAO instalado"
 fi
+
+END
 
 

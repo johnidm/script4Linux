@@ -35,7 +35,7 @@ program_installed() {
 
 clean_up() {
 	[ -f ${DirTemp}/${File} ] && rm ${DirTemp}/${File}
-	[ -d ${DirTemp}/z26 ] && rm -R ${DirTemp}/z26
+	[ -d ${DirTemp}/z26 ] && rm -rf ${DirTemp}/z26
 }
 
 # verifica permissao de root

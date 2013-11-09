@@ -29,7 +29,7 @@ echo "Iniciando a instalacao do ${APLICACAO}"
 if [ "$(uname -m)" == "x86_64" ]; then
   # 64 bit	
   URL=http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2%20x64.tar.bz2
-  FILE_TMP=Sublime\ Text\ 2.0.2x64.tar.bz2	
+  FILE_TMP=Sublime\ Text\ 2.0.2\ x64.tar.bz2
 else
   # 32 bit
   URL="http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.2.tar.bz2" 
@@ -45,7 +45,7 @@ fi
 
 if [ "$(uname -m)" == "x86_64" ]; then
   # 64 bit	
-  mv /tmp/Sublime\ Text\ 2.0.2x64.tar.bz2 /tmp/$FILE	
+  mv /tmp/Sublime\ Text\ 2.0.2\ x64.tar.bz2 /tmp/$FILE	
 else
   # 32 bit
   mv /tmp/Sublime\ Text\ 2.0.2.tar.bz2 /tmp/$FILE

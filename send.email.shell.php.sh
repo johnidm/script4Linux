@@ -18,6 +18,10 @@
 
 <?php
   
+  # define as informacoes de localidade e encoding
+
+  putenv('LANG=en_US.UTF-8');
+  
   $repos = $argv[1];
   $rev   = $argv[2];    
       
@@ -30,7 +34,7 @@
     $string = "<ul>";								
 		foreach($files as $index => $array )
 		{   
-			  $string .= "<li>".$files[$index]["tp"]." ".$files[$index]["arquivo"]."</li>";											
+			  $string .= "<li>". ( $files[$index]["tp"] )." ". ( $files[$index]["arquivo"] )."</li>";											
 		}   
    	$string .= "</ul>";
 					
@@ -48,7 +52,7 @@
     foreach ( $files as $index => $array  ) 
     {
           
-      $file = trim($files[$index]);                    
+      $file = trim($files[$index]); 
       if ( ! empty ($file) ) 
       {         
         $tp = "#";
@@ -113,10 +117,11 @@
  
   $author = trim( shell_exec( "svnlook author -r $rev $repos" ) );
   $date = trim( shell_exec( "svnlook date -r $rev $repos" ) ); 
-  $log = trim( shell_exec( "svnlook log -r $rev $repos" ) );  
+  $log = trim( exec( "svnlook log -r $rev $repos" ) ) ;  
   $files = trim( shell_exec( "svnlook changed -r $rev $repos" ) ); 
   $project = trim( basename( $repos ) );  
- 
+
+
   $subject = "$author comitou no projeto $project";
 
   $from = "microsys.mailer@gmail.com";
@@ -124,7 +129,7 @@
   $to = trim( getEmailNotify( $FILE ) );
   $listfiles = explodeFilesChanged($files);
 
-  $headers  = 'MIME-Version: 1.0' . "\r\n";
+  $headers  = 'MIME-Version: 1.1' . "\r\n";
   $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
   $headers .= 'To: Microsys SVN <microsys.mailer@gmail.com>' . "\r\n";
 
@@ -146,7 +151,7 @@
 			
 
 				(( (! empty($log)) ) ? "<div style=\"font-family: verdana, sans-serif; font-size: 14px; color: #000000; margin: 10px;\"><b>Log</b></div>	
-				<div style=\"text-indent: 15px; -webkit-border-radius: 15px; border-radius: 15px;  background-color: #FFFFCC; padding: 10px; font-family: verdana, sans-serif; font-size: 12px; border: 2px solid  #FFCC00;\">$log</div>" : "" )
+				<div style=\"text-indent: 15px; -webkit-border-radius: 15px; border-radius: 15px;  background-color: #FFFFCC; padding: 10px; font-family: verdana, sans-serif; font-size: 12px; border: 2px solid  #FFCC00;\">".  ( $log ) ."</div>" : "" )
 			
 			
 				."
@@ -165,6 +170,8 @@
 	</body>
 	</html>
   ";
+
+
 
 
 if (! empty($to) )

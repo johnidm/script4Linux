@@ -23,7 +23,7 @@
 #  - Uma sugestão é criar um diretorio na raiz de instalação do SVN e colocar o script de backup nesse local.
 #  - Nao se esqueca de dar as devidas permissoes de execucao desse arquivo: "sudo chmod +x backup_svn.sh"		 
 #  - Utilize o crontab para agendar a execuçao desse script
-#   	Ex: inclui esse linha no arquivo /etc/contrab para agendar o bakcup de segunda a sexta as 12:30; ""
+#   	Ex: para agendar o bakcup de segunda a sexta as 12:30 inclui esse linha no arquivo /etc/crontab > "30 12 * * 1-5 root sh /var/svn/conf/backup_svn.sh"
 
 
 REPOS_SVN=/var/svn/repos
@@ -42,6 +42,7 @@ FALHA=0 # false
 
 
 # exclui backup antigos feito localmente
+
 : '
 excluir_backup_antigos() {
 
@@ -55,30 +56,6 @@ excluir_backup_antigos() {
 	fi	
 }
 '
-
-
-
-# envo de e-mail para notificações
-# pode ser utilizado qualquer programa de envio de e-mail
-# nesse exemplo estou utilizando o msmtp - http://msmtp.sourceforge.net/
-envio_email() {
-
-	_log=$(<${DIR_BACKUP_LOG})
-	echo "$_log"
-
-	# envio do email com notificação do estado no backup no título	
-	# substituir a tag <email> pelos e-mails que serão notificados: ex: gerente@empresa.com.br;suporte@empresa.com.br;desenvolvimento@empresa.com.br
-		
-	cat <<EOF | msmtp -a gmail -t #<email>#
-		Subject: Backup de repositorios SVN $( [ $FALHA -eq 1 ] && echo " - FALHA" )
-		Resultado
-		$_log
-
-	EOF
-
-}
-
-
 
 # registra as etapas do backup 
 log() {  
@@ -129,6 +106,22 @@ log "Finalizando dump dos repositorios"
 
 log "Finalizando backup"
 
-envio_email
+
+
+# envo de e-mail para notificações
+# pode ser utilizado qualquer programa de envio de e-mail
+# nesse exemplo estou utilizando o msmtp - http://msmtp.sourceforge.net/
+_log=$(<${DIR_BACKUP_LOG})
+echo "$_log"
+
+# envio do email com notificação do estado no backup no título	
+# substituir a tag <email> pelos e-mails que serão notificados: ex: gerente@empresa.com.br;suporte@empresa.com.br;desenvolvimento@empresa.com.br
+		
+cat <<EOF | msmtp -a gmail -t #<email>#
+	Subject: Backup de repositorios SVN $( [ $FALHA -eq 1 ] && echo " - FALHA" )
+	Resultado
+	$_log
+EOF
+
 
 #### - fim fluxo

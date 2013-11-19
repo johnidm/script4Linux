@@ -3,7 +3,7 @@
 
 
 __DIR=/usr/games
-__PATH=Atari2600/Games
+__PATH=Atari2600
 
 __DIR_TMP=/tmp/roms
 

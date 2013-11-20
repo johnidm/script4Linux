@@ -120,6 +120,7 @@ echo "$_log"
 		
 cat <<EOF | msmtp -a gmail -t #<email>#
 	Subject: Backup de repositorios SVN $( [ $FALHA -eq 1 ] && echo " - FALHA" )
+
 	Resultado
 	$_log
 EOF

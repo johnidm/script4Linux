@@ -5,24 +5,24 @@
 # 11/2013
 
 # Funcionalidades
-#  - backup local; feito em um diretorio configurado na própria maquina 
-#  - backup remoto; feito em um local que não é a mãquina, ex: CD-ROM; HD externos; pen drives  
-#  - exclusão de diretórios antigos de backup
-#  - notificação por e-mail do estado do backup
+#  - backup local; feito em um diretorio configurado na prï¿½pria maquina 
+#  - backup remoto; feito em um local que nï¿½o ï¿½ a mï¿½quina, ex: CD-ROM; HD externos; pen drives  
+#  - exclusï¿½o de diretï¿½rios antigos de backup
+#  - notificaï¿½ï¿½o por e-mail do estado do backup
 
-# Configuração
+# Configuraï¿½ï¿½o
 #  - Configurar o repositorio do SVN - "REPOS_SVN" 
-#  - Configurar o diretório de bakcup - "DIR_BACKUP"
+#  - Configurar o diretï¿½rio de bakcup - "DIR_BACKUP"
 #  - Quantidade de dias de aramzenamento de backup - "DIAS_LIMITE_BACKUP" 	
-#	Se a quantidade de dias configurada for "0" a exclusão não sera realizada
-#	Os logs não são excluídos
-#	Ex: se configurado com valor 30, os backups feitos com Dia - 30 serão excluídos; 
+#	Se a quantidade de dias configurada for "0" a exclusï¿½o nï¿½o sera realizada
+#	Os logs nï¿½o sï¿½o excluï¿½dos
+#	Ex: se configurado com valor 30, os backups feitos com Dia - 30 serï¿½o excluï¿½dos; 
 #		
 
-# Instalação
-#  - Uma sugestão é criar um diretorio na raiz de instalação do SVN e colocar o script de backup nesse local.
+# Instalaï¿½ï¿½o
+#  - Uma sugestï¿½o ï¿½ criar um diretorio na raiz de instalaï¿½ï¿½o do SVN e colocar o script de backup nesse local.
 #  - Nao se esqueca de dar as devidas permissoes de execucao desse arquivo: "sudo chmod +x backup_svn.sh"		 
-#  - Utilize o crontab para agendar a execuçao desse script
+#  - Utilize o crontab para agendar a execuï¿½ao desse script
 #   	Ex: para agendar o bakcup de segunda a sexta as 12:30 inclui esse linha no arquivo /etc/crontab > "30 12 * * 1-5 root sh /var/svn/conf/backup_svn.sh"
 
 
@@ -31,7 +31,7 @@ DIR_BACKUP=/home/msys/svn/backup
 DIAS_LIMITE_BACKUP=0
 
 
-# nomenclatura do diretório de backup com todos os dumps dos repositórios SVN
+# nomenclatura do diretï¿½rio de backup com todos os dumps dos repositï¿½rios SVN
 DIR_BACKUP_DUMP=${DIR_BACKUP}/dump/$(date +%Y-%m-%d-%H-%M-%S)
 
 # Nome do arquivo de log com o status dos backups
@@ -47,12 +47,12 @@ FALHA=0 # false
 excluir_backup_antigos() {
 
 	if [ ${DIAS_LIMITE_BACKUP} -eq "0" ]; then
-		log "Exclusão de backups antigos está desabilitada"
+		log "Exclusï¿½o de backups antigos estï¿½ desabilitada"
 	else		
 		
 		_dir=DIR_BACKUP_DUMP/		
 		rm -rf ${_dir}
-		[ [ $? -eq 0 ] ] && log "Arquivos de backup do diretório ${_dir} excluídos com sucesso"		
+		[ [ $? -eq 0 ] ] && log "Arquivos de backup do diretï¿½rio ${_dir} excluï¿½dos com sucesso"		
 	fi	
 }
 '
@@ -108,14 +108,15 @@ log "Finalizando backup"
 
 
 
-# envo de e-mail para notificações
+# envo de e-mail para notificaï¿½ï¿½es
 # pode ser utilizado qualquer programa de envio de e-mail
 # nesse exemplo estou utilizando o msmtp - http://msmtp.sourceforge.net/
 _log=$(<${DIR_BACKUP_LOG})
 echo "$_log"
 
-# envio do email com notificação do estado no backup no título	
-# substituir a tag <email> pelos e-mails que serão notificados: ex: gerente@empresa.com.br;suporte@empresa.com.br;desenvolvimento@empresa.com.br
+# envio do email com notificaï¿½ï¿½o do estado no backup no tï¿½tulo	
+# substituir a tag <email> pelos e-mails que serï¿½o notificados: 
+# ex: gerente@empresa.com.br, suporte@empresa.com.br,denvolvimento@empresa.com.br
 		
 cat <<EOF | msmtp -a gmail -t #<email>#
 	Subject: Backup de repositorios SVN $( [ $FALHA -eq 1 ] && echo " - FALHA" )

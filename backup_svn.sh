@@ -118,11 +118,12 @@ echo "$_log"
 # substituir a tag <email> pelos e-mails que ser�o notificados: 
 # ex: gerente@empresa.com.br suporte@empresa.com.br denvolvimento@empresa.com.br
 		
-cat <<EOF | msmtp -a gmail -t #<email>#
-	Subject: Backup de repositorios SVN $( [ $FALHA -eq 1 ] && echo " - FALHA" )
 
-	Resultado
-	$_log
+cat <<EOF | msmtp -a microsys -t <lista de e-mail>
+Subject: Backup de repositorios SVN $( [ $FALHA -eq 1 ] && echo " - FALHA" )
+
+Resultado
+$_log
 EOF
 
 

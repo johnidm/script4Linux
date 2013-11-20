@@ -26,6 +26,9 @@ Purple      0;35     Light Purple  1;35
 Brown       0;33     Yellow        1;33
 Light Gray  0;37     White         1;37
 
+http://misc.flogisoft.com/bash/tip_colors_and_formatting
+http://linuxtidbits.wordpress.com/2008/08/11/output-color-on-bash-scripts/
+
 red='\e[0;31m'
 NC='\e[0m' # No Color
 echo -e "${red}Hello Stackoverflow${NC}"

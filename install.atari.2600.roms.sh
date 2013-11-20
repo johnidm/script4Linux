@@ -2,8 +2,8 @@
 # executa com super usuario
 
 
-__DIR=/home/johni
-__PATH=Atari2600/Games
+__DIR=/usr/games
+__PATH=Atari2600
 
 __DIR_TMP=/tmp/roms
 

@@ -45,10 +45,10 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 # atualizacoes
-: '
+
 apt-get update
 apt-get install build-essential
-'
+
 # validacaoes
 if program_installed ${WGET} ; then
 	echo ${WGET}" nao instalado" 	

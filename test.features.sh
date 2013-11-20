@@ -3,6 +3,37 @@
 
 
 
+
+#Colorir linha
+0 = black
+1 = red
+2 = green
+3 = yellow
+4 = blue
+5 = magenta
+6 = cyan
+7 = white
+echo "$(tput setaf 1)Hello, world$(tput sgr0)"
+
+
+
+Black       0;30     Dark Gray     1;30
+Blue        0;34     Light Blue    1;34
+Green       0;32     Light Green   1;32
+Cyan        0;36     Light Cyan    1;36
+Red         0;31     Light Red     1;31
+Purple      0;35     Light Purple  1;35
+Brown       0;33     Yellow        1;33
+Light Gray  0;37     White         1;37
+
+http://misc.flogisoft.com/bash/tip_colors_and_formatting
+http://linuxtidbits.wordpress.com/2008/08/11/output-color-on-bash-scripts/
+
+red='\e[0;31m'
+NC='\e[0m' # No Color
+echo -e "${red}Hello Stackoverflow${NC}"
+
+
 EXPORT=/usr/bin/data/arquivo.tar.gz.2
 
 file=$(basename $EXPORT)

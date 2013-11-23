@@ -47,8 +47,8 @@ fi
 # atualizacoes
 
 apt-get update
-apt-get install build-essential
-apt-get install libsdl-dev
+apt-get -y install build-essential
+apt-get -y install libsdl-dev
 
 
 # validacaoes

@@ -5,7 +5,13 @@
 
 #apt-get update
 
+
+//verificar se os programas estão instalados
 #apt-get install subversion apache2 libapache2-svn subversion-tools apache2-utils
+
+habilitar o modulo de auteticacao
+sudo a2enmod authz_svn
+
 
 #SVN_CONF=/var/svn/conf
 #mkdir -p ${SVN_CONF}

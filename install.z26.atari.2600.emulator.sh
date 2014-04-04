@@ -52,18 +52,19 @@ apt-get -y install libsdl-dev
 
 
 # validacaoes
-if program_installed ${WGET} ; then
-	echo ${WGET}" nao instalado" 	
-	exit 1
-fi
-if program_installed ${UNZIP} ; then
-	echo ${UNZIP}" nao instalado" 	
-	exit 1
-fi  
-if program_installed ${MAKE} ; then
-	echo ${MAKE}" nao instalado" 	
-	exit 1
-fi
+
+#if program_installed ${WGET} ; then
+#	echo ${WGET}" nao instalado" 	
+#	exit 1
+#fi
+#if program_installed ${UNZIP} ; then
+#	echo ${UNZIP}" nao instalado" 	
+#	exit 1
+#fi  
+#if program_installed ${MAKE} ; then
+#	echo ${MAKE}" nao instalado" 	
+#	exit 1
+#fi
 
 clean_up
 

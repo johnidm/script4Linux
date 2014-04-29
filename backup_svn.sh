@@ -34,6 +34,8 @@ DIAS_LIMITE_BACKUP=0
 # nomenclatura do diret�rio de backup com todos os dumps dos reposit�rios SVN
 DIR_BACKUP_DUMP=${DIR_BACKUP}/dump/$(date +%Y-%m-%d-%H-%M-%S)
 
+DIR_BACKUP_EXCLUIR=${DIR_BACKUP}/dump/$(date -d "-10 days" +%Y-%m-%d)
+
 # Nome do arquivo de log com o status dos backups
 DIR_BACKUP_LOG=${DIR_BACKUP}/log/$(date +%Y-%m-%d-%H-%M-%S).log
 
@@ -42,20 +44,8 @@ FALHA=0 # false
 
 
 # exclui backup antigos feito localmente
+rm -rf $DIR_BACKUP_EXCLUIR*
 
-: '
-excluir_backup_antigos() {
-
-	if [ ${DIAS_LIMITE_BACKUP} -eq "0" ]; then
-		log "Exclus�o de backups antigos est� desabilitada"
-	else		
-		
-		_dir=DIR_BACKUP_DUMP/		
-		rm -rf ${_dir}
-		[ [ $? -eq 0 ] ] && log "Arquivos de backup do diret�rio ${_dir} exclu�dos com sucesso"		
-	fi	
-}
-'
 
 # registra as etapas do backup 
 log() {  
